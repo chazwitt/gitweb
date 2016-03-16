@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>联盟成员--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+<style type="text/css">
+<!--
+.STYLE1 {font-size: 14px}
+.STYLE16 {font-size: 15px}
+.STYLE19 {color: #000000}
+.STYLE24 {color: #0033FF}
+.STYLE25 {color: #0000FF}
+.STYLE27 {color: #FF0000}
+.STYLE28 {font-size: 14px; color: #0033FF; }
+-->
+</style>
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">联盟推广链接</span>
+			</div>
+		  <div class="con userinfo">
+			<table border="0" cellpadding="0" cellspacing="0" class="xtable">
+				<tr>
+					<td width="124"><span style="font-size:15px;color:#D96536;">推广链接：</span></td>
+					<td width="916">
+					 <if condition="$set.userdomain eq '1'">
+					<input type="text" id="URL" class="px inp" style="width:290px;height:24px;line-height:24px;font-size:15px;" value="http://{$uid}.{$set.userdomainurl}" />
+					 <else />
+					 <input type="text" id="URL" class="px inp" style="width:290px;height:24px;line-height:24px;font-size:15px;" value="{:u('index/index', array('uid'=>$uid))}" />
+					 </if>
+					<input name="button" type="button" class="submit2" onClick="getUrl()" value="复制链接" /> 	                <span class="STYLE1"> 　</span><a href="{:u('index/contact', array('id'=>3))}" target="_blank"><span class="STYLE28">【推广合同】</span></a></td>
+</tr>
+				<tr>
+				  <td colspan="2" class="STYLE16"><p>1、将您的专属推广连接发布——QQ群、博客、论坛、QQ空间、说说、微信说说、签名...等等！<br>
+				    2、只要有人通过您的连接来到本站您都将获得<span class="STYLE25">1</span>个ip/人。只需<span class="STYLE24">{$set.ip}</span>个<span class="STYLE19">IP</span>就可获得【IP查看】所有权限。<a href="{:u('user/index')}" class="STYLE24">查看【IP数】</a><br>
+					3、<span class="STYLE27">推广IP，发现有用工具作弊，刷流量的，一律封号处理。已加入推广防作弊系统。</span><br/>
+					4、<span class="STYLE27">推广（vip）佣金500元，联盟（vip）佣金5000元。</span><br/>
+					5、本系统全自动结算，推广佣金自动到账，提现当天到账，特殊原因除外。<br/>
+					6、推广请勿作弊，发现永久封号，贫民网将你所有资料写入黑名单，赚钱请正规渠道推广。
+				    <br>
+				  </p>			      </td>
+				</tr>
+			</table>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<script language="javascript">
+function getUrl(){
+	window.clipboardData.setData('Text',document.getElementById('URL').value);
+	alert('复制成功');
+}
+</script>
+
+<include file="Public:foot" /></body>
+</html>

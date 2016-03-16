@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+    	<a class="add fb" href="{:u('email/addemail')}"><em>添加邮箱</em></a>　  <a class="add fb" href="{:u('email/emailnum')}"><em>图形统计</em></a>
+    </div>
+</div>
+<div class="pad-lr-10">
+	
+	<form id="myform" name="myform" action="{:u('email/delemail')}" method="post" onsubmit="return check();">
+
+    <div class="table-list">
+      <table width="100%" cellspacing="0">
+        <thead>
+        <tr>
+			<th width=186>ID</th>
+            <th width=70><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>            
+            <th width=468>批次名称</th>
+            <th width=464>邮箱</th>
+            <th width="439">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+          <volist name="list" id="val" >
+          <tr>
+            <td align="center">{$val.id}</td>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>            
+            <td align="center">{$val.batch}</td>
+            <td align="center">{$val.email}</td>
+            <td align="center"><a href="{:u('email/editemail', array('id'=>$val['id']))}')"><em class="blue">编辑</em></a></td>
+          </tr>
+          </volist>
+        </tbody>
+      </table>
+	  <div class="btn">
+		<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定要删除吗?')" style="float:left;margin:0 10px 0 10px;"/>
+		
+		<div id="pages">{$page}</div>
+      </div>
+	</div>
+  </form>
+</div>
+
+
+</body></html>

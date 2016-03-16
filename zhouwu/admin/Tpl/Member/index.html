@@ -1,0 +1,104 @@
+<include file="Public:header" />
+<div class="pad-lr-10">
+<form name="searchform" action="" method="get" >
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+				会员分类 :<select name="vipid" style="width:140px;">
+					<option value="" <if condition="$vipid eq ''"> selected="selected" </if>>--所有会员--</option>
+					<volist name="vip" id="val" >
+        			<option value="{$key}" <if condition="$vipid eq $key"> selected="selected" </if>>{$val}</option>
+					</volist>
+				</select>
+				搜索选项：<select name="searchtype" style="width:100px;">
+				<option value="1" <if condition="$searchtype eq 1">selected="selected" </if>>会员名称</option>
+				<option value="2" <if condition="$searchtype eq 2">selected="selected" </if>>邮箱</option>
+				<option value="3" <if condition="$searchtype eq 3">selected="selected" </if>>QQ</option>
+				<option value="4" <if condition="$searchtype eq 4">selected="selected" </if>>上家ID</option>
+				<option value="5" <if condition="$searchtype eq 5">selected="selected" </if>>注册IP地址</option>
+				<option value="6" <if condition="$searchtype eq 6">selected="selected" </if>>会员ID</option>
+				</select>
+                <input name="keyword" type="text" class="input-text" size="25" value="{$keyword}" />
+                <input type="hidden" name="m" value="member" />
+                <input type="submit" name="search" class="button" value="搜索" /> &nbsp;&nbsp;今日注册会员数：<font color="#FF0000" size="+1"><b>{$regcount}</b></font> 个&nbsp;&nbsp;今日有：<font color="#FF0000" size="+1"><b>{$logincount}</b></font> 个会员登录  &nbsp;&nbsp;初级VIP会员<font color="#FF0000" size="+1"><b>{$cjvipcount}</b></font> 个&nbsp;&nbsp;高级VIP会员<font color="#FF0000" size="+1"><b>{$gjvipcount}</b></font> 个
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+    <form id="myform" name="myform" action="{:u('member/delete')}" method="post" onsubmit="return check();">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                    <th >ID</th>
+                    <th ><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+              		<th >用户名</th>
+              		<th >邮箱</th>
+              		<th>登录时间/IP</th>
+              		<th >用户组</th>
+              		<th>真实姓名</th>
+					<th>QQ</th>
+              		<th>余额</th>
+              		<th>上家ID</th>
+              		<th>推广IP</th>
+                    <th>佣金</th>
+					<th>状态</th>
+              		<th>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="user_list" id="val" >
+        <tr>
+        	<td align="center">{$val.id}</td>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>            
+            <td align="center">{$val.username}</td>
+            <td align="center">{$val.email}</td>
+            <td align="center" title="注册时间是{$val.regtime|date='Y-m-d H:i:s',###}">{$val.last_time|timediff=###}<br/>{$val.lastip}<br/>{$val.lastip|redIP=###}</td>
+            <td align="center"><if condition="$val['vip'] eq 1"><font color="#000000"><b>普通会员</b></font>
+                            <elseif condition="$val['vip'] eq 2"/><font color="#0000FF"><b>初级会员</b></font>
+                            <else /><font color="#FF0000"><b>高级会员</b></font>
+                            </if></td>
+            <td align="center">{$val.realname}</td>
+            <td align="center">{$val.qq}</td>
+            <td align="center">{$val.money}</td>
+     		<td align="center">{$val.shangjia}</td>
+            <td align="center" onclick="deluserip({$val.id});"><span id="deluserip_{$val.id}">{$val.ip}</span></td>
+            <td align="center">{$val.cash}<a href="{:u('member/cash', array('uid'=>$val['id']))}">查看</a></td>
+            <td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /></td>
+            <td align="center"><a href="{:u('member/edit', array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+		<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('你确定要删除吗？" style="float:left;margin-left:10px;"/>
+		<div id="pages">{$page}</div>
+    </div>
+    </div>
+    </form>
+</div>
+<script language="javascript">
+function status(id,type){
+	if(confirm('你确认更改用户状态吗？')){
+		$.get("{:u('member/status')}", { id: id, type: type }, function(jsondata){
+			$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+jsondata+'.gif');
+		}); 
+	}
+}
+function deluserip(uid){
+	if(confirm('你确认清除会员推广IP吗？')){
+		$.get("{:u('member/deluserip')}", { uid: uid}, function(jsondata){
+			$("#deluserip_"+uid).html('0');
+		}); 
+	}
+	 
+}
+</script>
+</body>
+</html>

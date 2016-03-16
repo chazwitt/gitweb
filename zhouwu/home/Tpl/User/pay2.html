@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>账户充值--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+<style type="text/css">
+<!--
+.STYLE1 {color: #FF0000}
+.STYLE4 {
+	color: #0000FF;
+	font-weight: bold;
+}
+.STYLE5 {color: #000000}
+.STYLE6 {color: #990000}
+.STYLE7 {font-size: 13px}
+.STYLE51 {	font-size: 18px;
+	font-weight: bold;
+}
+.STYLE3 {	color: #990000;
+	font-weight: bold;
+	font-size: 18px;
+}
+-->
+</style>
+<script type="text/javascript">
+function checkmyform(){
+    if(document.alipayment.price.value==''){
+        alert('请输入充值金额!');
+        document.alipayment.price.focus();
+        return false;
+    }
+    
+}
+</script>
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">账户充值</span>
+			</div>
+			<div class="con userinfo">
+			<form name="alipayment" action="{:u('pay/doalipay')}" target="_blank" method="post" onSubmit="return checkmyform()">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%" class="xtable"><span class="STYLE1">注：请各位会员不要捣乱，充值金额不可以乱填，发现乱填的，后台直接删除帐号。
+				<tr>
+					<th width="100">
+						用户名：					</th>
+					<td><font style="font-size:16px;"><if condition="$user_info['realname'] neq ''">{$user_info.realname}<else />{$Think.session.username}</if></font></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>
+					
+					<input type="hidden" name="trade_no" value="{$trade_no}" />
+									</th>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>充值金额：</th>
+					<td><input type="text" name="price" class="inp" size="10" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"  value=""/>				     
+					   元  (初级价格<span class="STYLE3">{$set.chuji}</span> 高级价格<span class="STYLE3">{$set.vip}</span> )</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th height="52">充值方式：</th>
+					<td valign="bottom"><img src="__ROOT__/statics/home/images/alipay.jpg"/><span style="margin-left:10px;"> 　<span class="STYLE5">其他方式付款<span class="STYLE6">联系客服</span></span></span>
+					<td></td>
+				</tr>
+				<tr>
+					<th height="67"></th>
+					<td colspan="2"><u><span class="tit"><span class="t"><a href="http://me.alipay.com/sukuan"><img src="http://98.pinminwang.com/upload/image/1.jpg" width="128" height="36" border="0" longdesc="http://me.alipay.com/sukuan"></a></span></span></u>
+&nbsp;<a href="{:u('user/record')}" class="STYLE7"><u>查看充值记录</u></a>                </td>
+				</tr>
+				<tr>
+					<th></th>
+				  <td><span class="STYLE1">注意：请选择"<span class="STYLE5">即时到帐</span>"付款，否则无法到账。<span class="STYLE4"><a href="__ROOT__/statics/home/images/zfb.jpg" target="_blank">查看演示</a></span></span></td>
+					<td></td>
+				</tr>
+				</table>
+			  </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Public:foot" />
+</body>
+</html>

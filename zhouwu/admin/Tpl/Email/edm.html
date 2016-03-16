@@ -1,0 +1,53 @@
+<include file="Public:header" />
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+    	<a class="add fb" href="{:u('email/edmdetail', array('mid'=>$mid))}"><em>图形统计</em></a>　
+    </div>
+</div>
+<div class="pad-lr-10">
+	
+	<form id="myform" name="myform" action="{:u('email/deledm')}" method="post" onsubmit="return check();">
+
+    <div class="table-list">
+      <table width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th width=41><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>            
+            <th width=292>邮箱</th>
+            <th width=292>访问地区</th>
+            <th width=292>省份</th>
+            <th width=292>运营商</th>
+            <th width=292>来路</th>
+            <th width=292>操作系统</th>
+            <th width=292>浏览器版本</th>
+            <th width="292">点击时间</th>
+        </tr>
+        </thead>
+        <tbody>
+          <volist name="list" id="val" >
+          <tr>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>            
+            <td align="center">{$val.email}</td>
+            <td align="center">{$val.area}</td>
+            <td align="center">{$val.region}</td>
+            <td align="center">{$val.isp}</td>
+            <td align="center">{$val.ip}</td>
+            <td align="center">{$val.xitong}</td>
+            <td align="center">{$val.ie}</td>
+            <td align="center">{$val.addtime}</td>
+          </tr>
+          </volist>
+        </tbody>
+      </table>
+	  <div class="btn">
+		<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定要删除吗?')" style="float:left;margin:0 10px 0 10px;"/>
+		
+		<div id="pages">{$page}</div>
+      </div>
+	</div>
+  </form>
+</div>
+
+
+</body></html>

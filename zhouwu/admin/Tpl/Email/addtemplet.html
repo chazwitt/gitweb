@@ -1,0 +1,31 @@
+<tagLib name="wego" />
+<include file="Public:header" />
+<div class="pad_10">
+    <form action="{:u('email/addtemplet')}" method="post" name="myform" id="myform" enctype="multipart/form-data" >
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            
+            <tr>
+                <th width="60">活动名称 :</th>
+                <td><input type="text" name="title" id="title" size="30" ></td>
+            </tr>
+            
+		   <tr>
+                <th>活动内容:</th>
+                <td><wego:editor id="content" name="content" type="KINDEDITOR" style="width:70%;height:350px;" ></wego:editor></td>
+            </tr>
+           
+        </table>
+       <input type="submit" name="dosubmit" id="dosubmit" class="button" value="添加">  
+<input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+    </form>
+    <script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+		
+		$("#title").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写活动名称!"});
+		$("#content").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写活动内容!"});
+		
+	})
+</script>
+</div>
+</body></html>

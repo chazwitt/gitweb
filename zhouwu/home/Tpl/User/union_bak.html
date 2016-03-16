@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>分销联盟--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+<style type="text/css">
+<!--
+.STYLE1 {font-size: 14px}
+.STYLE16 {font-size: １５px}
+.STYLE19 {color: #000000}
+.STYLE24 {color: #0033FF}
+.STYLE25 {color: #0000FF}
+.STYLE27 {color: #FF0000}
+.STYLE28 {font-size: 14px; color: #0033FF; }
+-->
+</style>
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">分销商链接</span>
+			</div>
+		  <div class="con userinfo">
+			<table border="0" cellpadding="0" cellspacing="0" class="xtable">
+				<tr>
+					<td width="124"><span style="font-size:15px;color:#D96536;">推广链接：</span></td>
+					<td width="916"><input type="text" id="URL" class="px inp" style="width:290px;height:24px;line-height:24px;font-size:15px;" value="{:u('index/index', array('uid'=>$uid))}" /><input name="button" type="button" class="submit2" onClick="getUrl()" value="复制链接" /> 	                <span class="STYLE1"> 　</span><a href="{:u('index/contact', array('id'=>3))}" target="_blank"><span class="STYLE28">【查看广告词、广告语】</span></a></td>
+				</tr>
+				<tr>
+				  <td colspan="2" class="STYLE16"><p>1、将您的专属推广连接发布——网赚创业QQ群、网赚博客、网赚论坛、源码技术论坛...等等！<br>
+				    2、只要有人通过您的连接来到本站您都将获得<span class="STYLE25">1</span>个ip/人。只需<span class="STYLE24">{$set.ip}</span>个<span class="STYLE19">IP</span>就可获得【精品资源】所有权限。<a href="{:u('user/index')}" class="STYLE24">查看【IP数】</a><br>
+					3、<span class="STYLE27">推广IP，发现有用工具作弊，刷流量的，一律封号处理。已加入推广防作弊系统。</span><br/>
+				    4、如果别人通过您的推广链接，付费开通vip您都有相应佣金，比例：<span class="STYLE27">初级vip-{$set.cfree}</span>元、<span class="STYLE27">高级vip-{$set.vfree}</span>元<a href="{:u('index/contact', array('id'=>4))}" target="_blank"><span class="STYLE28">【详情】</span></a>。
+				    <br>
+			      5、<span class="STYLE27">现在开通【高级vip】即可立马操作本站所有项目视频、下载权限。赚钱速度快</span><a href="{:u('user/rule')}" class="STYLE24">【点击查看】</a><span class="STYLE27">vip价格会随时上调。</span><br/>
+				  6、如果觉得推广链接长，可以用短网址进行推广！生成地址<a href="http://sscoo.com/" target="_blank">http://sscoo.com/</a>
+				  </p>			      </td>
+				</tr>
+			</table>
+		  </div>
+			<div class="myarticle clear mt10">
+				<dl>
+				  <dt>我推荐的用户  <small>（{$count2}）</small><span class="more"></span></dt>
+					<table border="0" width="100%" cellpadding="0" cellspacing="1" class="border-table">
+						<tr>
+							<th width="200">用户名</th>
+							<th width="150">备注</th>
+							<th width="120">佣金</th>
+							<th width="200">升级时间</th>
+                            <th width="200">交易状态</th>
+						</tr>
+                         <volist name="list" id="val" >
+                        <tr>
+                           <td align="center">{$val.username}</td>
+                          <td align="center">{$val.content}</td>
+                           <td align="center">{$val.pay}</td>
+                           <td align="center">{$val.addtime|date='Y-m-d H:i:s',###}</td>
+                            <td align="center"><if condition="$val['state'] eq 0">待付款
+                                    <elseif condition="$val['state'] eq 1"/>交易成功
+                                    
+                                  </if></td>
+                        </tr>
+                         </volist>
+                         <tr>
+                           <td colspan="5" align="center">{$page}</td>
+                        </tr>
+					</table>
+					
+				</dl>
+		  </div>
+			<div class="pages"></div>
+		</div>
+	</div>
+</div>
+
+<script language="javascript">
+function getUrl(){
+	window.clipboardData.setData('Text',document.getElementById('URL').value);
+	alert('复制成功');
+}
+</script>
+
+<include file="Public:foot" /></body>
+</html>

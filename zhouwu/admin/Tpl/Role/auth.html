@@ -1,0 +1,70 @@
+<include file="Public:header" />
+<script language="javascript">
+$(document).ready(function(){					   
+	function is_all_checked(input){ 
+		var flag=false;
+		input.each(function(){ 		
+			flag=$(this).attr('checked');
+			if(!flag)return true;
+		});
+		return flag;
+	}
+	var table_form=$('.table_form');
+	$('tr',table_form).each(function(){ 
+		var td_1_input=$("td:nth-child(2) input[type='checkbox']",this);
+		var td_2_input=$("td:nth-child(3) input[type='checkbox']",this);
+		td_1_input.click(function(){ 
+			td_2_input.attr('checked',td_1_input.attr('checked'));
+		});
+	});
+});
+
+</script>
+
+<div style="padding: 10px;">
+    <form action="{:u('role/auth_submit')}" method="post" name="myform" id="myform">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr style="font-size:14px;">
+            <td style=" padding-right: 10px; width: 50px; font-weight:bold;">模块</td>
+            <td align="left" style="background: #D8E2FA; padding-right: 10px; width: 150px;font-weight:bold;">模型</td>
+            <td style="padding-left: 20px;font-weight:bold;">操作</td>
+            </tr>
+            <foreach name="access_list" item="module_item">
+                <tr>
+                   <td align="left" style=" padding-right: 10px; width: 50px;"> {$module_item.groupname.title}</td>
+                    <td align="left" style="background: #D8E2FA; padding-right: 10px; width: 180px;">
+                    	<label>
+                       
+                        	<input  type="checkbox" class="module_cbo" value="{$module_item.id}" name="access_node[]"  <if condition="$module_item['checked']">checked="checked"</if>/>&nbsp;&nbsp;
+                                {$module_item.module_name}
+                       	</label>
+                	</td>
+                    <td>
+                    	<foreach name="module_item.actions" item="action_item"> &nbsp;&nbsp;
+                            <label>
+                            	<input type="checkbox" class="action_cbo" value="{$action_item.id}" name="access_node[]"
+                                	<if condition="$action_item['checked']">checked="checked"</if>
+                                />
+                                &nbsp;&nbsp;{$action_item.action_name}
+                   			</label>
+                        </foreach>
+                        &nbsp;
+              		</td>
+                </tr>
+            </foreach>
+            <tr>
+            <td style="padding-right: 10px; width: 50px;"></td>
+            <td align="left" style="background: #D8E2FA; padding-right: 10px; width: 150px;">特殊权限：</td>
+            <td><textarea name="special" cols="50" rows="5">{$special.special}</textarea></td>
+            </tr>
+        </table>
+        <div class="bk15"></div>
+        <input type="hidden" name="id" value="{$id}" />
+        <div class="btn">
+        <label class="select_all"><input type="checkbox" name="checkall" onClick="$('input[name=\'access_node[]\']').attr('checked',this.checked)" >全选</label>
+            <input type="submit" value="授权" name="dosubmit" class="button" id="dosubmit"/>
+            <input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+        </div>
+    </form>
+</div>
+</body></html>

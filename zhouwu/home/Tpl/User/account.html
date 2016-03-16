@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>修改资料--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+<script type="text/javascript">
+function checkmyform(){
+    if(document.myform.realname.value==''){
+        alert('请输入真实姓名');
+        document.myform.realname.focus();
+        return false;
+    }
+    if(document.myform.email.value.search(/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/) == -1){
+        alert('email格式错误！');
+        document.myform.email.focus();
+        return false;
+	}
+
+	if(document.myform.kaihu.value==''){
+        alert('请输入开户行');
+        document.myform.kaihu.focus();
+        return false;
+	}
+	if(document.myform.kahao.value==''){
+        alert('请输入卡号');
+        document.myform.kahao.focus();
+        return false;
+	}
+}
+</script>
+<style type="text/css">
+<!--
+.STYLE1 {color: #FF0000}
+.STYLE5 {font-size: 12px}
+-->
+</style>
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">修改资料</span>
+			</div>
+			<div class="con userinfo">
+			<form name="myform" action="{:u('user/account')}" method="post" onSubmit="return checkmyform()" >
+			<table border="0" cellpadding="0" cellspacing="0" class="xtable">
+				<tr>
+					<th width="100">真实姓名：</th>
+				  <td><input type="text" name="realname" class="px inp" value="{$user_info.realname}" style="width:200px;" <?php if($user_info['realname'] != ''):?>readonly<?php endif;?> /> 
+			      <span class="STYLE1">*</span><font color="red">注意：绑定后无法修改</font></td>
+				</tr>
+				<tr>
+					<th>Email：</th>
+				  <td><input size="60" type="text" name="email" class="px inp" value="{$user_info.email}" style="width:200px;" />
+				    <span class="STYLE1">*</span></td>
+				</tr>
+				<tr>
+					<th>QQ：</th>
+					<td><input size="60" type="text" name="qq" class="px inp" value="{$user_info.qq}" style="width:200px;" /></td>
+				</tr>
+				<tr>
+					<th>电话：</th>
+					<td><input size="60" type="text" name="tel" class="px inp" value="{$user_info.tel}" style="width:200px;" /></td>
+				</tr>
+				<tr>
+					<th>地址：</th>
+					<td><input size="60" type="text" name="address" class="px inp" value="{$user_info.address}" style="width:200px;" /></td>
+				</tr>
+				<tr>
+					<th>开户行：</th>
+				  <td><input size="60" type="text" name="kaihu" class="px inp" value="{$user_info.kaihu}" style="width:200px;" <?php if($user_info['kaihu'] != ''):?>readonly<?php endif;?>/>
+				    <span class="STYLE1">*</span><font color="red">【支持所有银行和第三方支付】注意：绑定后无法修改</font></td>
+				</tr>
+				<tr>
+					<th>卡号：</th>
+				  <td><input size="60" type="text" name="kahao" class="px inp" value="{$user_info.kahao}" style="width:200px;" <?php if($user_info['kahao'] != ''):?>readonly<?php endif;?>/>
+				    <span class="STYLE1">*</span><font color="red">【请填写银行卡号或支付宝帐号】注意：绑定后无法修改</font></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="submit" value="确认修改" class="submit2"/></td>
+				</tr>
+			</table>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Public:foot" />
+</body>
+</html>

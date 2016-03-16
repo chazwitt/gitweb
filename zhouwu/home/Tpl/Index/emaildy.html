@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>邮箱订阅--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+</head>
+<body>
+<form action="http://list.qq.com/cgi-bin/qf_compose_send" method='post' id='formauto'>
+	<input type="hidden" name="t" value="qf_booked_feedback"/>
+	<input type="hidden" name="id" value='{$set.qqemailnid}'/>
+	<input  id="to" name="to" type="hidden"  value="{$email}"/>
+</form>
+<script language="javascript" type="text/javascript">
+setTimeout("document.getElementById('formauto').submit()",2) 
+</script> 
+</body>
+</html>

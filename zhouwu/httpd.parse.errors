@@ -1,0 +1,3 @@
+Line 3: CacheClockRate directive ignored. It could be used only in the global configuration file
+Line 5: Unrecognized string:  RewriteCond %{REQUEST_FILENAME} !-f
+Line 6: Unrecognized string:  RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,0 +1,3 @@
+<?php
+//000000003600a:3:{i:0;a:8:{s:2:"id";s:1:"6";s:9:"user_name";s:7:"cainiao";s:8:"password";s:32:"1e214aaf03b9e296d3c7793cc9b939ca";s:8:"add_time";s:10:"1443690649";s:9:"last_time";s:10:"1443690649";s:6:"status";s:1:"1";s:7:"role_id";s:1:"1";s:9:"role_name";s:15:"超级管理员";}i:1;a:8:{s:2:"id";s:1:"5";s:9:"user_name";s:6:"kmvs70";s:8:"password";s:32:"1e214aaf03b9e296d3c7793cc9b939ca";s:8:"add_time";s:10:"1443690629";s:9:"last_time";s:10:"1443690629";s:6:"status";s:1:"1";s:7:"role_id";s:1:"1";s:9:"role_name";s:15:"超级管理员";}i:2;a:8:{s:2:"id";s:1:"1";s:9:"user_name";s:5:"admin";s:8:"password";s:32:"1e214aaf03b9e296d3c7793cc9b939ca";s:8:"add_time";s:10:"1363143078";s:9:"last_time";s:10:"1457942978";s:6:"status";s:1:"1";s:7:"role_id";s:1:"1";s:9:"role_name";s:15:"超级管理员";}}
+?>

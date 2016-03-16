@@ -1,0 +1,50 @@
+<include file="Public:header" />
+<div class="pad_10">
+    <form action="{:u('message/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data" >
+        <input type="hidden" name="id" value="{$mess_info.id}" />
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            
+            <tr>
+                <th width="60">标题: </th>
+                <td>{$mess_info.title}</td>
+            </tr>
+            <tr>
+                <th>联系人:</th>
+                <td>{$mess_info.linkman}</td>
+            </tr>
+            <tr>
+                <th>联系地址:</th>
+                <td>{$mess_info.address}</td>
+            </tr>
+             <tr>
+                <th>联系电话:</th>
+                <td>{$mess_info.phone}</td>
+            </tr>
+             <tr>
+                <th>邮箱:</th>
+                <td>{$mess_info.email}</td>
+            </tr>
+             <tr>
+                <th>留言内容:</th>
+                <td>{$mess_info.content}</td>
+            </tr>
+            
+            <tr>
+                <th>回复内容:</th>
+                <td><textarea name="reply" cols="50" rows="5" id="reply">{$mess_info.reply}</textarea></td>
+            </tr>
+            <tr>
+                <th>审核状态 :</th>
+                <td><input type="radio" name="status" value="1" 
+                    <if condition="$mess_info.status eq 1"> checked</if>
+                    >&nbsp;已审核&nbsp;&nbsp;&nbsp; <input type="radio" name="status" value="0" 
+                    <if condition="$mess_info.status eq 0"> checked</if>
+                    >&nbsp;未审核</td>
+            </tr>
+        </table>
+              <input type="submit" name="dosubmit" id="dosubmit" class="button" value="修改">  
+<input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+    </form>
+ 
+</div>
+</body></html>

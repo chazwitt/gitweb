@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{$title}--{$set.webname}</title>
+        <meta name="keywords" content="{$set.keywords}"/>
+        <meta name="description" content="{$set.description}"/>
+        <link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+    </head>
+    <body>
+    <include file="Public:head" />
+    <div class="W usermain clear mt10">
+        <div class="uleft fl">
+            <div class="usernav">
+                <dl>
+                    <include file="left" />
+                </dl>
+            </div>
+        </div>
+        <div class="uright fr">
+            <div class="userbox">
+                <div class="tit">
+                    <span class="t">
+                        {$title}									</span>
+                </div>
+                <div class="con userinfo">
+                    <div class="myarticle clear mt10">
+                    
+                          <volist name="list" id="val" >
+                           <dl>
+                            <dt>{$val.name}<span class="more fr"><a href="{:u('user/clist', array('cid'=>$val['id']))}">更多...</a></span></dt>
+                            
+                             <volist name="val['news']" id="val" >
+                               <dd><span class="pubdate">{$val.add_time}</span><a href="{:u('user/show', array('id'=>$val['id']))}">{$val.title}</a></dd>					
+                             </volist>
+                            </dl>
+                            
+                           </volist> 
+                            
+                            				</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include file="Public:foot" />
+</body>
+</html>

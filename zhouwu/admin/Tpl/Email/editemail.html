@@ -1,0 +1,35 @@
+<include file="Public:header" />
+<div class="pad_10">
+    <form action="{:u('email/editemail')}" method="post" name="myform" id="myform" enctype="multipart/form-data" >
+        <input type="hidden" name="id" value="{$emaillist.id}" />
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            
+            <tr>
+                <th width="60">批次 :</th>
+                <td><input type="text" name="batch" id="batch" size="30" value="{$emaillist.batch}" ></td>
+            </tr>
+            <tr>
+                <th>邮箱:</th>
+                <td><input type="text" name="email" id="email" value="{$emaillist.email}" size="30" ></td>
+            </tr>
+		
+		   
+      
+        </table>
+              <input type="submit" name="dosubmit" id="dosubmit" class="button" value="修改">  
+<input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+    </form>
+    <script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+		
+		$("#batch").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写批次"});
+		
+		//$("#email").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写邮箱"});
+		$("#email").formValidator({ onShow: "请输入email", onfocus: "请注意你输入的email格式，例如:wzmaodong@126.com", onCorrect: "输入正确" }).regexValidator({ regExp: "email", dataType: "enum", onError: "email格式不正确" }); 
+
+		
+	})
+</script>
+</div>
+</body></html>

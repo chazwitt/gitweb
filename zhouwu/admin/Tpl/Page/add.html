@@ -1,0 +1,90 @@
+<tagLib name="wego" />
+<include file="Public:header" />
+<form action="{:u('page/add')}" method="post" name="myform" id="myform"  enctype="multipart/form-data" style="margin-top:10px;">
+<input type="hidden" name="child" value="{$child}" />
+  <div class="pad-10">
+    <div class="col-tab">
+      <ul class="tabBut cu-li">
+        <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">基本信息</li>
+        <li id="tab_setting_2" onclick="SwapTab('setting','on','',2,2);">SEO设置</li>
+      </ul>
+      <div id="div_setting_1" class="contentList pad-10">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+          <tr>
+            <th width="100">标题名称:</th>
+            <td><input type="text" name="title" id="title" class="input-text" size="60"></td>
+          </tr>
+		  
+          <tr>
+            <th>所属分类:</th>
+            <td><select name="cate_id" id="cate_id" style="width:200px;">
+            	<option value="">--请选择分类--</option>
+               {$cate_list}
+              </select></td>
+          </tr>
+          
+          <tr>
+          	<th>图片 :</th>
+            <td><input type="file" name="img" id="img" class="input-text"  style="width:200px;" /></td>
+          </tr>
+           <tr>
+            <th>详细内容 :</th>
+            <td>            	
+				<wego:editor id="info" name="info" type="KINDEDITOR" style="width:70%;height:350px;" ></wego:editor>
+			</td>
+          </tr>
+          <tr>
+            <th>排序 :</th>
+            <td><input type="text" name="sort" id="sort" value="0" class="input-text" size="8"></td>
+          </tr>
+         <tr>
+            <th>状态  :</th>
+            <td><input type="radio" name="status" class="radio_style" value="1">
+              &nbsp;已审核&nbsp;&nbsp;&nbsp;
+              <input type="radio" name="status" class="radio_style" value="0" checked="checked">
+              &nbsp;待审核
+              </td>
+          </tr>
+        </table>
+      </div>
+      
+      <div id="div_setting_2" class="contentList pad-10 hidden">
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+          
+          <tr>
+            <th>Keywords  :</th>
+            <td><input type="text" name="seo_key" id="seo_key" class="input-text" size="60"></td>
+          </tr>
+          <tr>
+            <th>Description :</th>
+            <td><textarea name="seo_desc" id="seo_desc" cols="80" rows="8"></textarea></td>
+          </tr>
+        </table>
+      </div>
+      <div class="bk15"></div>
+      <div class="btn"><input type="submit" value="添加"  name="dosubmit" class="button" id="dosubmit"></div>
+    </div>
+  </div>
+</form>
+<script type="text/javascript">
+function SwapTab(name,cls_show,cls_hide,cnt,cur){
+    for(i=1;i<=cnt;i++){
+		if(i==cur){
+			 $('#div_'+name+'_'+i).show();
+			 $('#tab_'+name+'_'+i).attr('class',cls_show);
+		}else{
+			 $('#div_'+name+'_'+i).hide();
+			 $('#tab_'+name+'_'+i).attr('class',cls_hide);
+		}
+	}
+}
+
+
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+		
+		$("#title").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写名称!"});
+		$("#cate_id").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请选择分类!"});
+	})
+</script>
+</body></html>

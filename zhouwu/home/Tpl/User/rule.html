@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>开通联盟（VIP）--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+<style type="text/css">
+<!--
+.STYLE1 {color: #990000}
+.STYLE3 {
+	color: #990000;
+	font-weight: bold;
+	font-size: 18px;
+}
+.STYLE4 {color: #000000}
+.STYLE5 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.STYLE7 {font-size: 14px}
+.STYLE14 {color: #FF0000}
+-->
+</style>
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">开通联盟（VIP）</span>
+				</div>
+			<div class="con userinfo">
+			<form name="myform" action="{:u('user/rule')}" method="post" >
+			<table border="0" cellpadding="0" cellspacing="0" width="100%" class="xtable">
+				<tr>
+					<th width="100">
+						联盟户名：
+					</th>
+					<td><font style="font-size:16px;"><if condition="$user_info['realname'] neq ''">{$user_info.realname}<else />{$Think.session.username}</if></font>
+					<font color="#FF0000">【<if condition="$user_info['vip'] eq 1">普通（vip）
+                                    <elseif condition="$user_info['vip'] eq 2"/>推广（VIP）
+                                    <else /> 联盟（vip）
+                                </if>】</font>
+					
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>账户余额：</th>
+					<td><font style="font-size:20px;font-family:arial">{$user_info.money}</font>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:u('user/pay')}" ><u title="在线充值">余额充值</u></a></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>购买标准：</th>
+				  <td>
+                     <input type="radio" name="vip" value="2" checked/>
+						<span class="STYLE1"><span class="STYLE4">推广（VIP） </span><span class="STYLE5">{$set.chuji} </span></span>元 <span style="text-decoration:line-through"><span class="STYLE1"><span class="STYLE4">原价 </span><span class="STYLE5">1980 </span></span>元</span>
+						　　
+						<input type="radio" name="vip" value="3" />
+						联盟（VIP） <span class="STYLE3">{$set.vip}</span> 元  <span style="text-decoration:line-through">原价<span class="STYLE3">19800</span> 元</span>
+						
+					 		</td>
+					<td></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td bgcolor="#F0F0F0"><input type="submit" class="submit2" value="开通VIP权限" />
+						<p>&nbsp;</p>
+				    <p class="STYLE7"><span class="STYLE14">温馨提示：你购买的是贫民网三大特权，贫民网微信村1年服务特权，贫民网VIP永久特权，贫民网联盟系统永久推广特权，详细特权首页查看，请考虑清楚后购买，购买成功后无法退款。			        </p>
+					</td>
+					<td></td>
+				</tr>
+				</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Public:foot" />
+</body>
+</html>

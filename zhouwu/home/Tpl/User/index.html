@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>联盟vip中心--{$set.webname}</title>
+        <meta name="keywords" content="{$set.keywords}"/>
+        <meta name="description" content="{$set.description}"/>
+        <link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+        <script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery-1.4.2.min.js"></script>
+    </head>
+    <body>
+    <include file="Public:head" />
+    <div class="W usermain clear mt10">
+        <div class="uleft fl">
+            <div class="usernav">
+                <dl>
+                    <include file="left" />
+                </dl>
+            </div>
+        </div>
+        <div class="uright fr">
+            <div class="userbox">
+                <div class="tit">
+                    <span class="t">基本信息</span>
+                </div>
+                <div class="con userinfo">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="face" rowspan="2">
+                                <if condition="$user_info['face'] eq ''">
+                                <img src="__ROOT__/statics/home/images/noavatar_middle.gif"  width="100"  height="100" />
+                                <else />
+                                <img src="{$user_info.face}"  width="100"  height="100" />
+                                </if>
+                                <br/>
+								<a href="{:u('user/face')}">修改头像</a>
+                            </td>
+                            <td class="uname" colspan="3">
+                        <dd style="color:#990000;font-size:14px;">您好，<b><if condition="$user_info['realname'] neq ''">{$user_info.realname}<else />{$Think.session.username}</if></b>&nbsp;&nbsp;欢迎您回来！ &nbsp;&nbsp;</dd>
+                        </td>
+                        </tr>
+                        <tr>
+                            <td class="info" width="200px">
+                        <dd style="font-size:14px;">会员等级：<font color="#990000"><if condition="$user_info['vip'] eq 1">普通（vip）
+                                    <elseif condition="$user_info['vip'] eq 2"/>推广（VIP）
+                                            <else /> 联盟（VIP）
+                                </if></font></dd>
+                        <dd>可提现金额：<span class="money">{$user_info.money}元</span></dd>
+                        </td>
+                        <td class="info" width="200px">
+                        <dd>账户余额：<span class="money">{$user_info.money}元</span></dd><dd>推荐的用户：<span class="money"><a href="{:u('user/union')}">{$count}</a></span></dd>
+
+                        </td>
+                        <td class="info" width="200px">
+
+           <dd>注册时间：{$user_info.regtime|date='Y-m-d H:i:s',###}</dd>
+                        <dd>推广IP：{$ipcount}</dd>
+                        </td>
+                        <td></td>
+                        </tr>
+                    </table>
+					<if condition="$set.noticestr neq ''">
+					<div class="notice" style="padding:5px 0;margin-top:5px; font-size:14px; color:#FF0000; font-weight:bold;">{$set.noticestr}</div>
+					</if>
+                    <div class="notice" style="padding:5px 0;margin-top:3px;"><font color=red>上贫民网，寻找你的一切     最新动态（活动内容）</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/index_contact_id_4.html" target="_blank" style="color:#0000FF;"> </a></div>
+                    <div class="myarticle clear mt10">
+                        <dl>
+                        <volist name="list" id="val" >
+                            <dd><span class="pubdate">({$val.add_time})</span><b>最新动态（活动内容）</b> <a href="{:u('user/show', array('id'=>$val['id']))}">{$val.title}</a></dd>			
+			
+                            
+                         </volist>   
+                            
+                        </dl>
+
+                    </div>
+                    <div class="pageno">{$page}  </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<!--script language="javascript">
+var exitsplashmessage = '不要错过机会哦。" to see this now!\n\n***************************************';
+var exitsplashpage = 'http://wischina.cn/?affid=9605';
+</script-->
+<script language="javascript" src="http://gsniper2.com/exitsplash.php?tc=3399cc&uh=none&ad=none&sh=no&hv=no&bh=22&fs=12&lf=Arial&at="></script> 
+  
+    <include file="Public:foot" />
+<script language="javascript">
+function tixian(id){
+	var vip = <?php echo $user_info['vip'];?>;
+	if(vip==1){alert("请升级VIP会员后再通知管理员提现！");return;}
+    $.get("{:u('user/tixian')}", { id: id}, function(jsondata){
+		alert('已经通知管理员，请等待管理员处理!');
+	}); 
+}
+</script>
+</body>
+</html>

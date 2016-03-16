@@ -1,0 +1,27 @@
+<include file="Public:header" />
+<div class="pad_10" style="margin-top:50px;">
+    <form action="{:u('email/savemass')}" method="post" name="myform" id="myform" enctype="multipart/form-data" >
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            
+            <tr>
+                <th width="60">批次 :</th>
+                <td>
+                <select name="batch">
+                <volist name="list" id="vo">
+                <option value="{$vo.batch}">{$vo.batch}</option>
+                </volist>
+                </select>
+                
+                </td>
+            </tr>
+            
+		
+           
+        </table>
+        <input type="hidden" name="id" value="{$id}" />
+       <input type="submit" name="dosubmit" id="dosubmit" class="button" value="群发">  
+<input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+    </form>
+    
+</div>
+</body></html>

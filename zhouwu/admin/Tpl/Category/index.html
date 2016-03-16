@@ -1,0 +1,55 @@
+<include file="Public:header" />
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+    	<a class="add fb" href="{:u($module_name.'/add',array('child'=>$child))}"><em>添加分类</em></a>　
+    </div>
+</div>
+<div class="pad-lr-10" >
+    <form id="myform" name="myform" action="{:u($module_name.'/delete',array('child'=>$child))}" method="post" onsubmit="return check();">
+    <div class="table-list">
+    <table width="100%" cellspacing="0" id="J_cate_tree">
+        <thead>
+            <tr>
+                <th width="30"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+              	<th align="left">分类名称</th>
+                <th width="60">ID</th>
+              	<th width="80">排序</th>
+                <th width="60">状态</th>
+                <th width="150">操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        {$list}
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    <label for="check_box" style="cursor:pointer;">全选/取消</label>
+    <input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定删除!')"/>
+    
+    </div>
+
+    </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+function status(id,type){
+	//alert(type);
+    $.get("{:u('Category/status')}", { id: id, type: type }, function(jsondata){
+		//var return_data  = eval("("+jsondata+")");
+		//alert(jsondata);
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+jsondata+'.gif')
+	}); 
+}
+//排序方法
+function sort(id,type,num){
+	//alert(type);
+    $.get("{:u('Category/sort')}", { id: id, type: type,num:num }, function(jsondata){
+		
+		$("#"+type+"_"+id+" ").attr('value', jsondata);
+	},'json'); 
+}
+</script>
+</body>
+</html>

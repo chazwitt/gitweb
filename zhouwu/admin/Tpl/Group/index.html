@@ -1,0 +1,66 @@
+<include file="Public:header" />
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+    	<a class="add fb" href="{:u('group/add')}"><em>添加菜单</em></a>　
+    </div>
+</div>
+<div class="pad-lr-10">
+    <form id="myform" name="myform" action="{:u('group/delete')}" method="post" onsubmit="return check();">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=60>ID</th>
+                <th width=30><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>               
+                <th width=100>菜单分类名称</th>
+                <th>分类标识</th>     
+				<th width=60>排序</th> 			
+                <th width=60>状态</th>				
+                <th width=60>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="group_list" id="val" >
+        <tr>
+        	 <td align="center">{$val.id}</td>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]" <if condition="$val['user_name'] eq 'group'">disabled="disabled"</if>></td>           
+            <td align="center">{$val.title}</td>
+            <td align="center">{$val.name}</td>     		
+			<td align="center"><input type="text" class="input-text-c input-text" onblur="sort({$val.id},'sort',this.value)" id="sort_{$val.id}" value="{$val.sort}" size="4" name="listorders[{$val.id}]"></td>
+            <td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /></td>
+            <td align="center"><a href="{:u('group/edit', array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+    <div class="btn">
+		<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定要删除吗?')" style="float:left;margin-left:10px;"/>
+		<div id="pages">{$page}</div>
+    </div>
+    </div>
+    </form>
+</div>
+<script language="javascript">
+
+//排序方法
+function sort(id,type,num){
+    $.get("{:u('group/sort')}", { id: id, type: type,num:num }, function(jsondata){
+		//var return_data  = eval("("+jsondata+")");
+		//alert(return_data.data);
+		$("#"+type+"_"+id+" ").attr('value', jsondata);
+		//$("#"+type+"_"+id+" ").attr('value', return_data.data);
+	}); 
+}
+//状态
+function status(id,type){
+    $.get("{:u('group/status')}", { id: id, type: type }, function(jsondata){
+		 //alert(jsondata);
+		//var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+jsondata+'.gif');
+	}); 
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<tagLib name="wego" />
+<include file="Public:header" />
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+    	<a class="add fb" href="{$action}"><em>添加单页</em></a>　
+    </div>
+</div>
+<div class="pad-10" >
+    <form name="searchform" action="" method="get" >
+    <input type="hidden" name="child" value="{$child}" />
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+            	发布时间：         
+				<wego:calendar name="time_start">{$time_start}</wego:calendar>
+                -      
+				<wego:calendar name="time_end" more="true">{$time_end}</wego:calendar>
+            	&nbsp;&nbsp;分类：
+                <select name="cate_id" id="cate_id">
+            	<option value="0">--请选择分类--</option>
+                {$cate_list}
+              </select>
+                &nbsp;关键字 :
+                <input name="keyword" type="text" class="input-text" size="25" value="{$keyword}" />
+                <input type="hidden" name="m" value="page" />
+                <input type="submit" name="search" class="button" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    <form id="myform" name="myform" action="{:u('page/delete',array('child'=>$child))}" method="post" onsubmit="return check();">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=50>ID</th>
+                <th width=25><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>               
+                <th width=280>标题名称</th>
+                <th>所属分类</th>
+                <th width=150>发布时间</th>
+                <th width=60>排序</th>
+                <th width="40">状态</th>
+				<th width="80">编辑</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="article_list" id="val" >
+        <tr>       
+		 	<td align="center"><a href="{:u('page/edit', array('id'=>$val['id']))}">{$val.id}</a></td> 	
+            <td align="center">
+           	 <input type="checkbox" value="{$val.id}" name="id[]">
+			</td>           
+            <td align="left"><a class="blue" href="{:u('page/edit', array('id'=>$val['id'],'child'=>$child))}">{$val.title}</a></td>
+            <td align="center"><b>{$val.cate_name.name}</b></td>
+            <td align="center">{$val.add_time}</td>
+            <td align="center"><input  type="text" class="input-text-c input-text" value="{$val.sort}" id="sort_{$val.id}" onblur="sort({$val.id},'sort',this.value)" size="4" name="listorders[{$val.id}]"></td>
+         
+      		<td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /></td>
+			<td align="center"><a class="blue" href="{:u('page/edit', array('id'=>$val['id'],'child'=>$child))}">编辑</a></td>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left; cursor:pointer;">全选/取消</label>
+    	<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定要删除吗?')" style="float:left;margin:0 10px 0 10px;"/>
+    	
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+<script language="javascript">
+
+function status(id,type){
+    $.get("{:u('page/status')}", { id: id, type: type }, function(jsondata){
+		//var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+jsondata+'.gif')
+	}); 
+}
+//排序方法
+function sort(id,type,num){
+    
+    $.get("{:u('page/sort')}", { id: id, type: type,num:num }, function(jsondata){
+        
+		$("#"+type+"_"+id+" ").attr('value', jsondata);
+	},'json'); 
+}
+</script>
+</body>
+</html>

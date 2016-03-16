@@ -1,0 +1,8 @@
+#
+# robots.txt for yun818
+#
+
+User-agent: *
+Disallow: /admin/
+Disallow: /upload/
+

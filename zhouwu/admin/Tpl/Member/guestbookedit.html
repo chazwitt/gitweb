@@ -1,0 +1,43 @@
+<include file="Public:header" />
+<div class="pad_10">
+<form action="{:u('member/guestbookedit')}" method="post" name="myform" id="myform">
+<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	<tr> 
+		<th width="100">留言会员 :</th>
+		<td>{$guestbook_info.username}</td>
+    </tr>
+    <tr> 
+		<th width="100">留言内容 :</th>
+		<td>{$guestbook_info.content}</td>
+    </tr>
+    <tr> 
+		<th width="100">留言时间 :</th>
+		<td>{$guestbook_info.addtime}</td>
+    </tr>
+	<tr> 
+		<th width="100">留言IP :</th>
+		<td>{$guestbook_info.ip}</td>
+    </tr>
+    <tr> 
+		<th>回复内容 :</th>
+		<td><textarea name="reply" cols="50" rows="4">{$guestbook_info.reply}</textarea></td>
+    </tr>
+	<tr> 
+		<th width="100">回复时间 :</th>
+		<td>{$guestbook_info.reply_date}</td>
+    </tr>
+	<tr>
+		<th>状态 :</th>
+		<td>
+      		<input type="radio" name="status" class="radio_style" value="1" <if condition="$guestbook_info.status eq 1"> checked</if>> &nbsp;显示&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="status" class="radio_style" value="0" <if condition="$guestbook_info.status eq 0"> checked</if>> &nbsp;隐藏
+		</td>
+    </tr>
+</table>
+<input type="hidden" name="id" value="{$guestbook_info.id}" />
+<input type="submit" name="dosubmit" id="dosubmit" class="button" value="修改">  
+<input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+</form>
+
+</div>
+</body>

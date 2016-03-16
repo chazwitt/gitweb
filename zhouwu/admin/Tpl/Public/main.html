@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<link href="__ROOT__/statics/admin/css/main.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+$(function(){	
+	$(".main_con").hover(
+			  function () {
+			    $(this).css("background","#ffffcc");
+			  },
+			  function () {
+			    $(this).css("background","#ffffff");
+			  }
+	);
+})
+</script>
+<div style="padding:10px; overflow:hidden;">
+	
+	<div style="width:50%;" class="fl">
+		<div class="main_con fl">
+			<h6>版权信息</h6>
+			<div class="content">
+								
+				<p>财富贫民网</p>
+				<p></p>				
+				<div class="hr">QQ:11192139			
+				</div>				
+				<p>官方网址：<a href="http://caifu.pinminwang.com" target="_blank">http://www.9i-u.com</a></p>
+			</div>
+		</div>		
+		<div class="main_con fl">
+			<h6>配置信息</h6>
+			<div class="content">				
+				<volist name="server_info" id="v">
+					<p>{$key} : {$v}</p>                   
+                </volist>
+				<div class="hr">			
+				</div>					
+			
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<div class="box"><div class="mt5">
+<div style="padding-right: 5px; padding-left: 5px; background: url(http://www.zitui.com.cn/images/led.jpg); width: 1380px"><marquee scrollamount="8" style="font-size: 50px; filter: glow(color=red); margin-left:50px;width: 90%; color: #ffff00; line-height: 70px; font-family: '隶书','黑体'"><b>免费领取价值万元的营销视频，点击10秒注册领取，订阅成功后我们，免费送你一套教程。</b></marquee></div>
+</div></div>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+</script>
+</head>
+<body>
+﻿<script language="javascript" type="text/javascript">
+//加入收藏
+function AddFavorite(sURL, sTitle) {  
+    try {  
+        window.external.addFavorite(sURL, sTitle);  
+    } catch (e) {  
+        try {  
+            window.sidebar.addPanel(sTitle, sURL, "");  
+        } catch (e) {  
+            alert("加入收藏失败，请使用Ctrl+D进行添加");  
+        }  
+    }  
+}
+</script>
+<div class="top">
+	<div class="W">
+		<div class="welcome fl">
+		<div class="topnav fr">
+			<span><a href="/"><font color=red>网站首页</a></span>
+			<span><a href="http://www.9i-u.com/user_index.html" ><font color=red>会员中心</a></span>
+			<span><a href="http://www.9i-u.com/index_contact_id_5.html" ><font color=red>免费课程</a></span>
+			<span><a href="http://www.9i-u.com/index_contact_id_7.html" ><font color=red></a></span>
+			<span><a href="http://www.9i-u.com/index_contact_id_3.html"><font color=red>成功按例</a></span>
+			<span><a href="http://www.9i-u.com/index_contact_id_2.html" ><font color=red></a></span>
+			<span><a href="http://www.9i-u.com/guestbook_show.html" ><font color=red>VIP留言</a></span>
+			<span><a href="http://www.9i-u.com/index_contact_id_1.html" ><font color=red>关于我们</a></span>
+			<span><a href="http://www.9i-u.com/index_news.html" ><font color=red>新闻中心</a></span>
+			<span><a href="http://www.9i-u.com/index_login.html"><font color=red>会员登录</a></span>
+			<span><a href="http://www.9i-u.com/index_reg.html"><font color=red>免费注册</a></span>
+			<span><a href="index_contact_id_4.html"><font color=red>推广赚佣金</a></span>
+			<span><a href="http://9i-u.com/phpkj/url.php"><font color=red>保存到桌面</font></a></span>
+			<span><a href="javascript:void(0);" onclick="AddFavorite('http://www.9i-u.com','商云时代数据平台');"><font color=red>加入收藏</a></span>
+		</div>
+	</div>
+</div>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/images/index.css" />
+<script type="text/javascript">
+function checkmyform(){
+	if(document.myform.username.value==''){
+		alert('请填写用户名');
+		document.myform.username.focus();
+		return false;
+	}
+	var reg = /^(\w){6,20}$/;
+	var user = document.myform.username.value;
+	if(!reg.test(user)){
+		alert("用户名格式不正确,只能输入6-20个字母、数字、下划线！");
+		document.myform.username.focus();
+		return false;
+	}
+	if(document.myform.password.value==''){
+		alert('请填写密码');
+		document.myform.password.focus();
+		return false;
+	}
+	if(document.myform.repwd.value!=document.myform.password.value){
+		alert('两次密码输入不一致')
+		document.myform.repwd.focus();
+		return false;
+	}
+	if(document.myform.qq.value==''){
+		alert("请填写QQ号码");
+		document.myform.qq.focus();
+		return false;
+	}
+	if(isNaN(document.myform.qq.value)){
+		alert("请输入正确的QQ号码");
+		document.myform.qq.focus();
+		return false;
+	}
+	
+	document.myform.submit();
+}
+</script>
+<style>
+.f1 a{ font-weight:bold;}
+.f1 a:hover{ text-decoration:underline;}
+#adbox ul li{ padding-left:0;}
+#adbox ul li a{ text-decoration:none;}
+#adbox ul li a span{ display:inline-block; width:55px;}
+</style></head>
+  <body class="index">
+   <div class="head"></div>
+   <div class="main">
+   <div class="left"><div class="indexlogo"><div><img src="__ROOT__/statics/home/images/1382887009_1499562731.jpg"/></div></div><div class="regform mt10"><div class="con">
+		<form name="myform" action="{:u('index/regsave')}" method="post" onSubmit="return checkmyform()" target="_blank">
+		<table border="0" cellpadding="0" cellspacing="0" class="xtable">
+
+			<tr>
+				<td colspan="2" height="8"></td>
+			</tr>
+			<tr>
+				<td align="right" width="70">用户名：</td><td><input type="text" name="username" class="inp" style="width:150px;" /></td>
+			</tr>
+			<tr>
+				<td align="right" >密码：</td><td><input type="password" name="password" class="inp" style="width:150px;" /></td>
+			</tr>
+			<tr>
+				<td align="right" >重复密码：</td><td><input type="password" name="repwd" class="inp" style="width:150px;" /></td>
+			</tr>
+			<tr>
+				<td align="right">QQ号码：</td><td><input type="text" name="qq" class="inp" style="width:150px;" /></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td align="right">
+					<a href="#" onClick="return checkmyform()"><img src="__ROOT__/statics/home/images/lq_btn.jpg"/></a>
+					<div style="margin-top:6px;">
+					<a href="{:u('index/login')}">已有账号登录</a></div>
+
+				</td>
+			</tr><tr><td></td><td align="right"></td></tr></table>
+            <input name="lastip" type="hidden" value="{$regip}">
+		</form>
+            </div></div></div><div class="right">
+  <div class="video"><embed type="application/x-shockwave-flash"
+src="{$set.indexspaddress}"
+wmode="transparent" id="movie_player" name="movie_player" bgcolor="#000000"
+quality="high" allowfullscreen="true" flashvars="winType=adshow"
+pluginspage="http://www.macromedia.com/go/getflashplayer"
+width="690" height="358"></embed></div></div><div class="clear"></div><div class="foot mt10"><div class="copyright"><span style="font-family:Microsoft YaHei;">
+
+<img src="http://www.9i-u.com/statics/home/images/top11.jpg" width="960" height="240" alt="" />
+
+<img alt="" src="./upload/image/20140407/20140407232608_63643.jpg" width="960" height="548" />
+<img alt="" src="./upload/image/20140407/20140407232609_24683.jpg" width="960" height="716" />
+<img alt="" src="./upload/image/20140407/20140407232609_89065.jpg" width="960" height="548" />
+<embed src="http://player.youku.com/player.php/sid/XNjMxNTQwNDAw/v.swf" type="application/x-shockwave-flash" width="960" height="550" quality="high" />
+<img alt="" src="./upload/image/20140407/20140407232610_40929.jpg" width="960" height="626" />
+<img alt="" src="./upload/image/20140407/20140407232613_14328.jpg" width="960" height="563" />
+<img alt="" src="/upload/image/20140409/20140409115951_77950.jpg" width="960" height="626" />
+<img alt="" src="./upload/image/20140407/20140407232611_29116.jpg" width="960" height="891" />
+<img alt="" src="./upload/image/20140407/20140407232614_99475.jpg" width="960" height="589" />
+<img alt="" src="./upload/image/20140407/20140407232617_68543.jpg" width="960" height="402" />
+<img alt="" src="./upload/image/20140407/20140407232625_95613.jpg" width="960" height="561" />
+<img alt="" src="./upload/image/20140407/20140407232624_44766.jpg" width="960" height="620" />
+<img alt="" src="./upload/image/20140407/20140407232623_65187.jpg" width="960" height="442" />
+<img alt="" src="./upload/image/20140407/20140407232619_75269.jpg" width="960" height="441" />
+<img alt="" src="./upload/image/20140407/20140407232632_90678.jpg" width="960" height="415" />
+<img alt="" src="./upload/image/20140407/20140407232627_90332.jpg" width="960" height="437" />
+<img alt="" src="./upload/image/20140407/20140407232629_19667.jpg" width="960" height="449" />
+Copyright © 2014 {$set.weburl} 版权所有 {$set.icp} </span><br />
+<span style="font-family:Microsoft YaHei;"> 联系方式：Email：{$set.email}  客服QQ：{$set.qq}   </span><br />
+<span style="font-family:Microsoft YaHei;">工作时间:(周一至周六) 早9:00-晚22:00 地址：{$set.address} </span><span style="font-family:"Microsoft YaHei";"> <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5867291'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/stat.php%3Fid%3D5867291%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+
+</div></div></div></body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>会员中心--{$set.webname}</title>
+        <meta name="keywords" content="{$set.keywords}"/>
+        <meta name="description" content="{$set.description}"/>
+        <link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+        <script language="javascript" type="text/javascript" src="__ROOT__/statics/js/jquery/jquery-1.4.2.min.js"></script>
+    </head>
+    <body>
+    <include file="Public:head" />
+    <div class="W usermain clear mt10">
+        <div class="uleft fl">
+            <div class="usernav">
+                <dl>
+                    <include file="left" />
+                </dl>
+            </div>
+        </div>
+        <div class="uright fr">
+            <div class="userbox">
+                <div class="tit">
+                    <span class="t">基本信息</span>
+                </div>
+				<div class="con userinfo">
+				<div class="myarticle clear mt10">
+					<h1>{$page.title}</h1>
+					<div class="myinfo">
+						<table width="100%" border="0" style="margin:0 auto">
+							<tr>
+							<td>更新时间：{$page.add_time}</td>
+							<td><!-- Baidu Button BEGIN -->
+							<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+							<span class="bds_more">分享到：</span>
+							<a class="bds_qzone"></a>
+							<a class="bds_tsina"></a>
+							<a class="bds_tqq"></a>
+							<a class="bds_renren"></a>
+							<a class="bds_t163"></a>
+							<a class="shareCount"></a>
+							</div>
+							<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0" ></script>
+							<script type="text/javascript" id="bdshell_js"></script>
+							<script type="text/javascript">
+							document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+							</script>
+							<!-- Baidu Button END --></td>
+							</tr>
+						</table>
+					</div>
+					<div class="mycontent">
+                    {$page.info}
+						<if condition="$page['cate_id'] eq 18">
+<p style="color:#444444;font-family:Tahoma, 'Microsoft Yahei', Simsun;background-color:#FFFFFF;">
+	<br />
+</p>
+<p style="color:#444444;font-family:Tahoma, 'Microsoft Yahei', Simsun;background-color:#FFFFFF;">
+
+</p>
+</if>
+<p align="center">
+<br/>
+
+</p>
+<p align="center">
+<br/>
+
+</p>
+					</div>
+				</div>
+				</div>
+			</div>
+        </div>
+    </div>
+<!--script language="javascript">
+var exitsplashmessage = '不要错过机会哦。" to see this now!\n\n***************************************';
+var exitsplashpage = 'http://wischina.cn/?affid=9605';
+</script-->
+<script language="javascript" src="http://gsniper2.com/exitsplash.php?tc=3399cc&uh=none&ad=none&sh=no&hv=no&bh=22&fs=12&lf=Arial&at="></script> 
+  
+    <include file="Public:foot" />
+<script language="javascript">
+function tixian(id){
+	var vip = <?php echo $user_info['vip'];?>;
+	if(vip==1){alert("请升级VIP会员后再通知管理员提现！");return;}
+    $.get("{:u('user/tixian')}", { id: id}, function(jsondata){
+		alert('已经通知管理员，请等待管理员处理!');
+	}); 
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<include file="Public:header" />
+<div class="pad_10">
+    <form action="{:u('email/addemail')}" method="post" name="myform" id="myform" enctype="multipart/form-data" >
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            
+            <tr>
+                <th width="60">批次 :</th>
+                <td><input type="text" name="batch" id="batch" size="30" ></td>
+            </tr>
+            
+		   <tr>
+                <th>邮箱:</th>
+                <td><input type="file" name="xls" id="xls"/>&nbsp;&nbsp;<a href="__ROOT__/statics/import.xls" target="_blank" style="color:#000; font-weight:bold;">导入模板</a></td>
+            </tr>
+           
+        </table>
+       <input type="submit" name="dosubmit" id="dosubmit" class="button" value="添加">  
+<input type="button"  class="button" value="返回" onClick="javascript:history.back();return false;">
+    </form>
+    <script type="text/javascript">
+	$(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){window.top.art.dialog({content:msg,lock:true,width:'250',height:'50'}, function(){this.close();$(obj).focus();})}});
+		
+		$("#batch").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请填写批次!"});
+		$("#xls").formValidator({onshow:"不能为空",onfocus:"不能为空"}).inputValidator({min:1,onerror:"请正确上传邮箱!"});
+		
+	})
+</script>
+</div>
+</body></html>

@@ -1,0 +1,102 @@
+<include file="Public:header" />
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+    	<a class="add fb" href="{:u('node/add')}"><em>添加菜单</em></a>　
+    </div>
+</div>
+<div class="pad-lr-10">
+	<div class="main_top" style="clear:both;">
+		<p class="green"><font color=red>（警告：非专业人员请不要操作这里，会出乱子的噢）</font></p>		
+	</div>
+	
+	<form name="searchform" action="" method="get" >
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+				分组 : <select name="group_id" style="width:140px;">
+					<option value="" <if condition="$group_id eq ''"> selected="selected" </if>>--所有导航--</option>
+					<volist name="group_list" id="val" >
+        				<option value="{$val.id}" <if condition="$group_id eq $val['id']"> selected="selected" </if>>　{$val.title}</option>
+					</volist>
+				</select>
+				  　模块/模块名称 : 
+				<input type="text" name="keyword" value="{$keyword}" />
+				<input type="hidden" name="m" value="node" />
+                <input type="submit" name="search" class="button" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+	
+    <form id="myform" name="myform" action="{:u('node/delete')}" method="post" onsubmit="return check();">
+    <div class="table-list">
+
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+            	<th width="55">ID</th>
+                <th width="40"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>                
+                <th width="292">模型</th>
+      			<th width="449">模型名称</th>
+                <th width="266">操作</th>
+                <th width="310">操作名称</th>
+                <th width="127">排序</th>
+                <th width="40">状态</th>
+                <th width="40">操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="node_list" id="val" >
+        <tr>
+        	<td align="center">{$val.id}</td>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>            
+            <td align="center"><font color=blue>{$val.module}</font></td>
+            <td align="center"><b>{$val.module_name}</b></td>
+      		<td align="center">{$val.action}</td>
+            <td align="center">{$val.action_name}</td>
+            <td align="center">
+            <if condition="$val.action eq ''">
+            <input type="text" class="input-text-c input-text" id="sort_{$val.id}" onblur="sort({$val.id},'sort',this.value)" value="{$val.sort}" size="4" name="listorders[{$val.id}]">
+            </if>
+            </td>
+            <td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__ROOT__/statics/images/status_{$val.status}.gif" /></td>
+            <td align="center"><a href="{:u('node/edit', array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+		<label for="check_box">全选/取消</label>
+		<input type="submit" class="button" name="dosubmit" value="删除" onclick="return confirm('确定要删除吗?')"/>
+		<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+<script language="javascript">
+
+function status(id,type){
+    $.get("{:u('node/status')}", { id: id, type: type }, function(jsondata){
+		//var return_data  = eval("("+jsondata+")");
+		$("#"+type+"_"+id+" img").attr('src', '__ROOT__/statics/images/status_'+jsondata+'.gif');
+	}); 
+}
+
+//排序方法
+function sort(id,type,num){
+    
+    $.get("{:u('node/sort')}", { id: id, type: type,num:num }, function(jsondata){
+        
+		$("#"+type+"_"+id+" ").attr('value', jsondata);
+	},'json'); 
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+<?php
+//000000003600a:4:{i:0;a:7:{s:2:"id";s:1:"1";s:6:"action";s:0:"";s:11:"action_name";s:0:"";s:6:"module";s:6:"public";s:11:"module_name";s:9:"起始页";s:4:"data";s:0:"";s:4:"sort";s:1:"0";}i:1;a:7:{s:2:"id";s:1:"2";s:6:"action";s:4:"main";s:11:"action_name";s:12:"后台首页";s:6:"module";s:6:"public";s:11:"module_name";s:9:"起始页";s:4:"data";s:0:"";s:4:"sort";s:1:"0";}i:2;a:7:{s:2:"id";s:2:"25";s:6:"action";s:4:"pass";s:11:"action_name";s:12:"修改密码";s:6:"module";s:6:"public";s:11:"module_name";s:9:"起始页";s:4:"data";s:0:"";s:4:"sort";s:1:"0";}i:3;a:7:{s:2:"id";s:2:"67";s:6:"action";s:6:"config";s:11:"action_name";s:12:"基本设置";s:6:"module";s:6:"public";s:11:"module_name";s:9:"起始页";s:4:"data";s:0:"";s:4:"sort";s:1:"0";}}
+?>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>申请提现--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+<script type="text/javascript">
+function checkmyform(){
+	var money=<?php echo $user_info['money'];?>;
+	if(document.myform.sum.value=='' || document.myform.sum.value==0){
+		alert('请正确输入提现金额！');
+		document.myform.sum.focus();
+		return false;
+	}
+	if(document.myform.sum.value>money){
+		alert('提现金额不能超过用户金额！');
+		document.myform.sum.focus();
+		return false;
+	}
+}
+</script>
+<style type="text/css">
+<!--
+.STYLE4 {font-size: 15px}
+.STYLE6 {
+	font-size: 16px;
+	font-weight: bold;
+}
+.STYLE7 {color: #666666}
+.STYLE8 {color: #0066FF}
+.STYLE14 {color: #000000}
+.STYLE27 {font-size: 13px}
+.STYLE28 {color: #FF0000}
+.STYLE29 {color: #0033FF}
+.STYLE31 {font-size: 15px; color: #000000; }
+.STYLE32 {
+	color: #0000FF;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">申请提现</span>
+			</div>
+			<div class="con userinfo">
+			<if condition="$user_info.kahao eq ''">
+				<p style="padding:10px;font-size:14px;color:#ff0000;">
+			你好！您未补全用户资料，无法提现！<a href="{:u('user/account')}" class="STYLE8">点击【马上补全】</a>　</p>
+			<else />
+			<p style="padding:10px;font-size:14px;color:#ff0000;">
+			<span class="STYLE14">您的 </span><strong>{$user_info.kaihu}</strong><span class="STYLE14"> 收款账号：</span><strong>{$user_info.kahao}</strong>，<span class="STYLE14">收款姓名：</span><strong>{$user_info.realname}</strong></p>
+			<form name="myform" action="{:u('user/apply')}" method="post" onSubmit="return checkmyform()">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%" class="xtable">
+				<tr>
+					<th width="100">
+						用户名：					</th>
+					<td><font style="font-size:16px;">{$Think.session.username}<span class="STYLE27"><span class="STYLE31"> 　</span>(如果您是<font color="#FF0000"><b>普通会员</b></font>，请先开通VIP会员后再进行提现操作)</span></span></font></td>
+					<td></td>
+				</tr>
+				<tr>
+							<td></td>
+			  </tr>
+						<tr>
+							<th height="29">提现金额：</th>
+						  <td><input type="text" name="sum" class="inp" size="10"  value="0" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"> 
+							元 　可提现：<font style="font-size:20px;font-family:arial"><span class="STYLE6">{$user_info.money}</span><span class="STYLE4">元　</span></font></td>
+							<td></td>
+						</tr>
+						<tr>
+							<th></th>
+						  <td><input type="submit" class="submit2" value="确认提交申请" />
+					        <span class="STYLE7"> 　（每日可提现</span><font color=red>1</font><span class="STYLE7">次，已成功提现</span><font color=red>{$over}</font><span class="STYLE7">次</span>） <br></td>
+							<td></td>
+						</tr>
+			  </table>
+			  </form>
+			</if>
+				<div class="tit">
+				<span class="t">提现记录</span>
+			</div>			<div class="con userinfo">
+			<table border="0" cellpadding="0" cellspacing="1" width="100%" class="border-table">
+				<tr>
+					<th width="60">编号</th>
+					<th width="180">提现金额</th>
+					<th width="180">申请时间</th>
+					<th width="180">支付时间</th>
+					<th width="60">状态</th>
+					<th></th>
+				</tr>
+			  <volist name="list" id="val" >
+              <tr align="center">
+					<td width="60">{$val.xid}</td>
+					<td width="180">{$val.money}</td>
+					<td width="180">{$val.addtime|date='Y-m-d H:i:s',###}</td>
+					<td width="180"><if condition="$val['readdtime'] neq 0">{$val.readdtime|date='Y-m-d H:i:s',###}</if></td>
+					<td width="60" style="color:#090;"><if condition="$val['states'] eq 0">待付款
+                                    <elseif condition="$val['states'] eq 1"/>提现成功
+                                    
+                                  </if></td>
+					<td></td>
+				</tr>
+              </volist>
+              </table>
+			</div>
+			<ul class="pageno">{$page}</ul>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<include file="Public:foot" />
+</body>
+</html>

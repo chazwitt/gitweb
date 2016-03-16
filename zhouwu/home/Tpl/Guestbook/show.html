@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>VIP留言--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="pagebox">
+		<div class="tit">
+			<h2>VIP留言</h2>
+		</div>
+		<div class="con">
+			<div class="con guestbook">
+			 <volist name="list" id="val" >
+				<table border="0" cellpadding="0" cellspacing="1" width="100%" class="gtable">
+					<tr>
+						<td width="100" align="right"><span class="uname">{$val.username}：</span></td>
+						<td><span class="subject"></span></td>
+						<td width="150"><span class="pubdate">{$val.addtime}</span></td>
+					</tr>
+					<tr>
+						<td colspan="3"><span class="content">{$val.content}</span></td>
+					</tr>
+					 <if condition="$val['reply'] neq ''">
+					<tr>
+						<td colspan="3"><font color="red">管理员回复</font>：<span class="content">{$val.reply}</span></td>
+					</tr>
+					</if>
+				</table>
+			</volist>
+				<div class="pageno">{$page}</div>
+			</div>
+			<if condition="$Think.session.vip gt 1">
+			<div class="con send">
+				<form name="myform" action="{:u('guestbook/add')}" method="post">
+				<table width="100%" border="0" cellpadding="0" cellsacing="0" class="listtable">
+					<tr>
+						<th valign="top" align="right" width="80">发表留言：</th>
+						<td><textarea name="content" style="width:300px; height:80px; padding:3px;"></textarea></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="submit" class="button" value="提交留言" /></td>
+					</tr>
+				</table>
+				</form>
+			</div>
+			</if>
+			
+					</div>
+	</div>
+</div>
+<include file="Public:foot" />
+</body>
+</html>

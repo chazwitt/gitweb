@@ -1,0 +1,62 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>充值记录--{$set.webname}</title>
+<meta name="keywords" content="{$set.keywords}"/>
+<meta name="description" content="{$set.description}"/>
+<link rel="stylesheet" type="text/css" href="__ROOT__/statics/home/css/style.css" />
+</head>
+<body>
+<include file="Public:head" />
+<div class="W usermain clear mt10">
+	<div class="uleft fl">
+		<div class="usernav">
+	<dl>
+		<include file="left" />
+	</dl>
+</div>
+	</div>
+	<div class="uright fr">
+		<div class="userbox">
+			<div class="tit">
+				<span class="t">充值记录</span>
+			</div>
+			<div class="con userinfo">
+			<table border="0" cellpadding="0" cellspacing="1" width="100%" class="border-table">
+				<tr>
+					<th width="180">订单编号</th>
+					<th width="100">付款金额</th>
+					<th width="180">付款时间</th>
+					<th width="60">状态</th>
+					
+				</tr>
+                <volist name="list" id="val" >
+                <tr align="center">
+					<td width="180">{$val.num}</td>
+					<td width="100">{$val.money}</td>
+					<td width="180">{$val.addtime|date='Y-m-d H:i:s',###}</td>
+					<td width="60"><if condition="$val['state'] eq 1">待付款
+                                    <elseif condition="$val['state'] eq 2"/>待发货
+                                    <elseif condition="$val['state'] eq 3"/>待确认收货
+                                    <elseif condition="$val['state'] eq 4"/>交易成功
+
+                                    
+                                </if></td>
+					
+				</tr>
+			     </volist>
+             <tr>
+					<td colspan="4" align="center">{$page}</td>
+					
+				</tr>
+            </table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Public:foot" />
+</body>
+</html>

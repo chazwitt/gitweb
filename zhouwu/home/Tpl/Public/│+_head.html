@@ -1,0 +1,47 @@
+<script language="javascript" type="text/javascript">
+//加入收藏
+function AddFavorite(sURL, sTitle) {  
+    try {  
+        window.external.addFavorite(sURL, sTitle);  
+    } catch (e) {  
+        try {  
+            window.sidebar.addPanel(sTitle, sURL, "");  
+        } catch (e) {  
+            alert("加入收藏失败，请使用Ctrl+D进行添加");  
+        }  
+    }  
+}
+</script>
+<div class="top">
+	<div class="W">
+		<div class="welcome fl">
+			国内首家、互联网整合营销、自动化数据库赚钱平台、一直被模仿从未被超越！用心在做 </div>
+		<div class="topnav fr">
+			<span><a href="{:u('index/collect')}" target="_blank"><font color=red>保存到桌面</font></a></span>
+			<span><a href="{:u('index/login')}">会员登录</a></span>
+			<span><a href="{:u('index/reg')}">免费注册</a></span>
+			<span><a href="{:u('user/union')}">推广赚佣金</a></span>
+			<span><a href="javascript:void(0);" onclick="AddFavorite('http://{$set.weburl}','{$set.webname}');">加入收藏</a></span>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<div id="header">
+	<div class="W head">
+		<div class="logo fl">
+			<h1><a href="http://{$set.weburl}" title="{$set.webname}"><img src="__ROOT__/statics/home/images/logo.jpg"/></a></h1>
+		</div>
+		<div class="nav fr">
+		  <ul>
+		    <li><a href="/">网站首页</a></li>
+		    <li><a href="{:u('user/index')}" >会员中心</a></li>
+			<li><a href="/index_contact_id_5.html" >免费课程</a></li>
+		    <li><a href="{:u('user/clist', array('cid'=>18))}" >精品资源</a></li>
+		    <li><a href="{:u('index/contact', array('id'=>2))}" >有问必答</a></li>
+			<li><a href="{:u('guestbook/show')}" >VIP留言</a></li>
+			<li><a href="{:u('index/contact', array('id'=>1))}" >联系我们</a></li>
+		  </ul>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+*{margin:0; padding:0;}*
+body{
+	font-size:14px;
+	font-family:microsoft yahei;
+	line-height:13px;
+	text-align:center;
+	background:#CACEF8;
+	padding-top:10px;
+}
+a img{
+	border:none;
+}
+a:link,a:visited{
+	text-decoration:none;
+}
+.clear{
+	clear:both;
+}
+
+.mt10{
+	margin-top:10px;
+}
+
+.head{
+	
+}
+
+.indexlogo{
+	width:280px;
+	height:98px;
+	background:#fff;
+	overflow:hidden;
+}
+.indexlogo div{
+	text-align:center;
+	padding-top:29px;
+}
+.indexlogo div img{
+	width:240px;
+	height:40px;
+}
+
+.main{
+	overflow:hidden;
+	margin:0 auto;
+	margin-top:10px;
+	width:1000px;
+	text-align:left;
+}
+.main .left{
+	width:280px;
+	float:left;
+}
+.main .right{
+	width:710px;
+	float:right;
+}
+
+.regform{
+	background:#408AFA;
+	color:#fff;
+	height:280px;
+}
+.regform .con{
+	padding:20px;
+}
+.regform td{
+	padding:4px 0;
+}
+.regform .inp{
+	padding:5px 4px;
+}
+.regform a:link,.regform a:visited{
+	color:#fff;
+}
+
+.video{
+	width:710px;
+	text-align:center;
+	padding-top:15px;
+	padding-bottom:15px;
+	background:#097679;
+}
+
+.foot{
+	text-align:center;
+	color:#fff;
+	color:#555;
+}
+
+.foot .copyright{
+	padding:20px;
+}
+.foot .copyright a:link,.foot .copyright a:visited{
+	color:#ffffcc;
+}
+
+
+
